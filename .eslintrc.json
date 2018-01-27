@@ -1,8 +1,6 @@
 {
-  "extends": "airbnb",
-  "plugins": ["prettier"],
+  "extends": ["prettier"],
   "rules": {
-    "no-multi-assign":"off",
-    "prettier/prettier": 2
+    "no-multi-assign":"off"
   }
 }

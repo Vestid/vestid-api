@@ -1,5 +1,5 @@
-const projectname = 'vestid API v1.0';
 require('dotenv').config();
+const projectname = 'vestid API v1.0';
 const cors = require('cors');
 const express = require('express');
 const massive = require('massive');
