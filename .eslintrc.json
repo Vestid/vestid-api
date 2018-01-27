@@ -2,5 +2,8 @@
   "extends": ["prettier"],
   "rules": {
     "no-multi-assign":"off"
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
   }
 }

@@ -1,5 +1,4 @@
 require('dotenv').config();
-const projectname = 'vestid API v1.0';
 const cors = require('cors');
 const express = require('express');
 const massive = require('massive');
@@ -21,5 +20,5 @@ app.use(
 );
 
 app.listen(app.get('port'), () =>
-  console.log(`${projectname} running on `, app.get('port'))
+  console.log(`${process.env.PROJECT} running on `, app.get('port'))
 );
