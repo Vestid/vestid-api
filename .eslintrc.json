@@ -1,6 +1,7 @@
 {
   "extends": ["prettier"],
   "rules": {
+    "semi":"off",
     "no-multi-assign":"off",
     "no-confusing-arrow": "error",
     "no-mixed-operators": "error",
