@@ -2,6 +2,7 @@
   "extends": ["prettier"],
   "rules": {
     "no-multi-assign":"off",
+    "semi": "off",
     "no-confusing-arrow": "error",
     "no-mixed-operators": "error",
     "lines-around-comment": [
