@@ -32,7 +32,7 @@
   },
   "lint-staged": {
     "server/**/*.{js,json}": [
-      "prettier --single-quote --write",
+      "prettier --single-quote --no-semi --write",
       "git add"
     ]
   },
