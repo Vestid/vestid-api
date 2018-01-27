@@ -1,15 +1,15 @@
-require('dotenv').config();
-const cors = require('cors');
-const express = require('express');
-const massive = require('massive');
-const bodyParser = require('body-parser');
-const session = require('express-session');
+require('dotenv').config()
+const cors = require('cors')
+const express = require('express')
+const massive = require('massive')
+const bodyParser = require('body-parser')
+const session = require('express-session')
 
-const app = (module.exports = express());
-app.set('port', process.env.PORT || 3030);
+const app = (module.exports = express())
+app.set('port', process.env.PORT || 3030)
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors())
+app.use(bodyParser.json())
 
 app.use(
   session({
@@ -17,8 +17,8 @@ app.use(
     saveUninitialized: false,
     resave: false
   })
-);
+)
 
 app.listen(app.get('port'), () =>
   console.log(`${process.env.PROJECT} running on `, app.get('port'))
-);
+)
