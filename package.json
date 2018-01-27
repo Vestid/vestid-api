@@ -28,6 +28,7 @@
     "eslint-plugin-react": "^7.6.0",
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
+    "nodemon": "^1.14.11",
     "prettier": "1.10.2"
   },
   "lint-staged": {
@@ -37,6 +38,7 @@
     ]
   },
   "scripts": {
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "dev": "nodemon server/index.js"
   }
 }
