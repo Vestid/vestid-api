@@ -30,7 +30,7 @@
     "prettier": "1.10.2"
   },
   "lint-staged": {
-    "server/**/*.{js}": [
+    "server/**/*.{js,json}": [
       "prettier --write",
       "git add"
     ]
