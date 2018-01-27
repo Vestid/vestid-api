@@ -1,5 +1,5 @@
 {
-  "extends": ["plugin:prettier/recommend"],
+  "extends": ["prettier"],
   "rules": {
     "no-multi-assign":"off",
     "no-confusing-arrow": "error",
