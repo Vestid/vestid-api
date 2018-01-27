@@ -1,7 +1,24 @@
 {
-  "extends": ["prettier"],
+  "extends": ["plugin:prettier/recommend"],
   "rules": {
-    "no-multi-assign":"off"
+    "no-multi-assign":"off",
+    "no-confusing-arrow": "error",
+    "no-mixed-operators": "error",
+    "lines-around-comment": [
+      "error",
+      {
+        "beforeBlockComment": true,
+        "afterBlockComment": true,
+        "beforeLineComment": true,
+        "afterLineComment": true,
+        "allowBlockStart": true,
+        "allowBlockEnd": true,
+        "allowObjectStart": true,
+        "allowObjectEnd": true,
+        "allowArrayStart": true,
+        "allowArrayEnd": true
+      }
+    ]
   },
   "parserOptions": {
     "ecmaVersion": 6
