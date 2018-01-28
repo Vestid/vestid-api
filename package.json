@@ -39,6 +39,6 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "dev": "nodemon server/index.js"
+    "dev": "nodemon server"
   }
 }

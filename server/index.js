@@ -21,6 +21,8 @@ app.use(
 
 //todo: look into moving sessions into it's own file
 
+app.use(require('./routes'))
+
 app.listen(app.get('port'), () =>
   console.log(`${process.env.PROJECT} running on `, app.get('port'))
 )
