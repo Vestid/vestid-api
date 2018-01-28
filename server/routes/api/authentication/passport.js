@@ -31,6 +31,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   console.log('deserializeUser: ', id)
+  return done(id)
 
   // app.get('db').user_search_id([id]).then(response => {
   //     return done(null, response)
