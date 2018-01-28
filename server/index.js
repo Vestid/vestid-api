@@ -25,7 +25,7 @@ app.use(passport.session())
 //todo: look into moving sessions into it's own file
 
 app.use(require('./routes'))
-
+console.log('initial route', require('./routes'))
 app.listen(app.get('port'), () =>
   console.log(`${process.env.PROJECT} running on `, app.get('port'))
 )
