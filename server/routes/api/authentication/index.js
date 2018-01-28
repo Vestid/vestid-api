@@ -1,5 +1,4 @@
 const router = require('express').Router()
-console.log('router: ', router)
 
 router.get('/', (req, res, next) => {
   console.log('params: ', req.params)
