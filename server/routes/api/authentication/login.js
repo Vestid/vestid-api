@@ -1,8 +1,8 @@
-const app = require('../../../')
+// const db = require('../../../db')
 
 exports.loginUser = (req, res, next) => {
+  // console.log(db.users)
   console.log('session: ', req.session)
   console.log('USER: ', req.user)
-  console.log('db: ', app.get('db'))
-  res.end('Nice job')
+  res.end('nice job')
 }

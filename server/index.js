@@ -1,6 +1,8 @@
 require('dotenv').config()
 const app = (module.exports = require('express')())
 const db = require('./db')
+const models = require('./models')
+console.log('models: ', models)
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const session = require('express-session')
