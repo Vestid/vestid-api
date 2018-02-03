@@ -1,7 +1,9 @@
-const router = require('express').Router()
-const { loginUser } = require('./login')
-const passport = require('./passport')
+import { loginUser } from './login'
+import passport from './passport'
+import express from 'express'
+
+const router = express.Router()
 
 router.post('/login', passport.authenticate('local'), loginUser)
 
-module.exports = router
+export { router as authRouter }

@@ -1,6 +1,6 @@
-require('dotenv').config()
-const app = require('../')
-const db = require('mongoose')
+import {} from 'dotenv/config'
+import db from 'mongoose'
+import app from '../'
 
 db.Promise = global.Promise
 db.connect(process.env.MONGO_URI)

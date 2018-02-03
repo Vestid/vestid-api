@@ -1,8 +1,7 @@
-const LocalStrategy = require('passport-local').Strategy
-const passport = require('passport')
-const { verifyPW } = require('../../../helper')
-
-// const app = require('../server');
+import passport from 'passport'
+import Strategy from 'passport-local'
+import { verifyPW } from '../../../helper'
+const LocalStrategy = Strategy
 
 passport.use(
   new LocalStrategy(
@@ -37,4 +36,4 @@ passport.deserializeUser((id, done) => {
   // })
 })
 
-module.exports = passport
+export default passport

@@ -1,6 +1,8 @@
-const router = require('express').Router()
+import express from 'express'
+import { authRouter } from './authentication'
+const router = express.Router()
 
 // API V1 router entry
-router.use('/auth', require('./authentication'))
+router.use('/auth', authRouter)
 
-module.exports = router
+export { router as apiRouter }

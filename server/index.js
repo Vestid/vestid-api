@@ -1,13 +1,13 @@
-require('dotenv').config()
-const app = (module.exports = require('express')())
-const db = require('./db')
-const models = require('./models')
-console.log('models: ', models)
-const cors = require('cors')
-const bodyParser = require('body-parser')
-const session = require('express-session')
-const passport = require('./routes/api/authentication/passport')
+import db from './db'
+import cors from 'cors'
+import express from 'express'
+import router from './routes'
+import {} from 'dotenv/config'
+import bodyParser from 'body-parser'
+import session from 'express-session'
+import passport from './routes/api/authentication/passport'
 
+const app = express()
 app.set('port', process.env.PORT || 3030)
 
 app.use(cors())
@@ -24,7 +24,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // EXPRESS ROUTING ===========================
-app.use(require('./routes'))
+app.use(router)
 
 // CREATES SERVER & MONGODB CONNECTION ========================
 app.on('db_connected', () =>
@@ -35,3 +35,5 @@ app.on('db_connected', () =>
     )
   )
 )
+
+export default app
