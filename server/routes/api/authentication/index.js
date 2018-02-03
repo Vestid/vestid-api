@@ -1,11 +1,7 @@
-// const router = require('express').Router()
+const router = require('express').Router()
+const { loginUser } = require('./login')
+const passport = require('./passport')
 
-// router.get('/', (req, res, next) => {
-//   // console.log('params: ', req.params)
-//   console.log('youre here')
-// })
+router.post('/login', passport.authenticate('local'), loginUser)
 
-// router.post('/', (req, res, next) => {
-//   res.end('hello from the post')
-// })
-// module.exports = router
+module.exports = router
