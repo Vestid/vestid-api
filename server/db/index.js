@@ -1,10 +1,11 @@
 require('dotenv').config()
-const mongoose = require('mongoose')
+const app = require('../')
+const db = require('mongoose')
 
-mongoose.Promise = global.Promise
-mongoose.connect(process.env.MONGO_URI)
-mongoose.connection
-  .once('open', () => console.log('Connected to MongoLab instance.'))
+db.Promise = global.Promise
+db.connect(process.env.MONGO_URI)
+db.connection
+  .once('open', () => app.emit('db_connected'))
   .on('error', error => console.log('Error connecting to MongoLab: ', error))
 
-module.exports = mongoose
+module.exports = db

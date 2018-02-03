@@ -1,12 +1,11 @@
 require('dotenv').config()
+const app = (module.exports = require('express')())
+const db = require('./db')
 const cors = require('cors')
-const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('./routes/api/authentication/passport')
-const mongoose = require('./db')
 
-const app = (module.exports = express())
 app.set('port', process.env.PORT || 3030)
 
 app.use(cors())
@@ -22,7 +21,15 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+// EXPRESS ROUTING ===========================
 app.use(require('./routes'))
-app.listen(app.get('port'), mongoose =>
-  console.log(`${process.env.PROJECT} running on `, app.get('port'))
+
+// CREATES SERVER & MONGODB CONNECTION ========================
+app.on('db_connected', () =>
+  app.listen(app.get('port'), () =>
+    console.log(
+      `Connected to MongoLab instance & ${process.env.PROJECT} running on`,
+      app.get('port')
+    )
+  )
 )
