@@ -1,12 +1,13 @@
-require('dotenv').config()
-const cors = require('cors')
-const express = require('express')
-const massive = require('massive')
-const bodyParser = require('body-parser')
-const session = require('express-session')
-const passport = require('./routes/api/authentication/passport')
+import db from './db'
+import cors from 'cors'
+import express from 'express'
+import router from './routes'
+import {} from 'dotenv/config'
+import bodyParser from 'body-parser'
+import session from 'express-session'
+import passport from './routes/api/authentication/passport'
 
-const app = (module.exports = express())
+const app = express()
 app.set('port', process.env.PORT || 3030)
 
 app.use(cors())
@@ -22,10 +23,17 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-//todo: look into moving sessions into it's own file
+// EXPRESS ROUTING ===========================
+app.use(router)
 
-app.use(require('./routes'))
-
-app.listen(app.get('port'), () =>
-  console.log(`${process.env.PROJECT} running on `, app.get('port'))
+// CREATES SERVER & MONGODB CONNECTION ========================
+app.on('db_connected', () =>
+  app.listen(app.get('port'), () =>
+    console.log(
+      `Connected to MongoLab instance & ${process.env.PROJECT} running on`,
+      app.get('port')
+    )
+  )
 )
+
+export default app
