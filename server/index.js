@@ -1,4 +1,5 @@
 import db from './db'
+import Raven from 'raven'
 import cors from 'cors'
 import express from 'express'
 import router from './routes'
@@ -7,10 +8,14 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import passport from './routes/api/authentication/passport'
 
-const { PORT, PROJECT, SESSION_SECRET } = process.env
+const { PORT, PROJECT, SESSION_SECRET, SENTRY_DNS } = process.env
 const app = express()
 
+Raven.config(SENTRY_DNS).install()
+
 app.set('port', PORT || 3030)
+
+app.use(Raven.requestHandler())
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -28,6 +33,7 @@ app.use(passport.session())
 // EXPRESS ROUTING ===========================
 app.use(router)
 
+app.use(Raven.errorHandler())
 // HANDLE EMMITTED EVENTS =====================
 // app.on('warn', e => console.warn(`Error Warning: ${e.stack}`))
 process.setMaxListeners(0)
