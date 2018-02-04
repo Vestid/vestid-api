@@ -28,6 +28,10 @@ app.use(passport.session())
 // EXPRESS ROUTING ===========================
 app.use(router)
 
+// HANDLE EMMITTED EVENTS =====================
+app.on('warn', e => console.warn(`Error Warning: ${e.stack}`))
+process.setMaxListeners(0)
+
 // CREATES SERVER & MONGODB CONNECTION ========================
 app.on('db_connected', () =>
   app.listen(app.get('port'), () =>

@@ -1,16 +1,14 @@
 const { SENDGRID_API, SENDGRID_EMAIL } = process.env
 import db from 'mongoose'
 import sendgrid from '@sendgrid/mail'
+import random from 'rand-token'
 sendgrid.setApiKey(`${SENDGRID_API}`)
 
 exports.resetPasswordEmail = (req, res, next) => {
   const { hostname } = req
-  const { email, password } = req.body
-
-  console.log('email: ', email)
-  console.log('password: ', password)
-
-  const url = `http://${hostname}/api/reset-approved`
+  const token = random.generate(15)
+  //   const url = `http://${hostname}:3030/api/v1/auth/reset-approved/${token}`
+  const url = `http://${hostname}/api/v1/auth/reset-approved/${token}`
 
   const msg = {
     to: 'vestid.email@gmail.com',
@@ -22,10 +20,6 @@ exports.resetPasswordEmail = (req, res, next) => {
   }
   sendgrid
     .send(msg)
-    .then(success => {
-      // console.log('res: ', JSON.stringify(res));
-      console.log('res: ', success.json())
-    })
+    .then(success => res.status(202).send('success'))
     .catch(err => console.log('sendgrid error: ', err))
-  //   res.status(200).send('nice work')
 }

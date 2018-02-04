@@ -1,5 +1,8 @@
 {
   "extends": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "rules": {
     "no-multi-assign":"off",
     "semi": "off",
@@ -20,8 +23,5 @@
         "allowArrayEnd": true
       }
     ]
-  },
-  "parserOptions": {
-    "ecmaVersion": 6
   }
 }
