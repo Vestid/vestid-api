@@ -7,15 +7,17 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import passport from './routes/api/authentication/passport'
 
+const { PORT, PROJECT, SESSION_SECRET } = process.env
 const app = express()
-app.set('port', process.env.PORT || 3030)
+
+app.set('port', PORT || 3030)
 
 app.use(cors())
 app.use(bodyParser.json())
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: SESSION_SECRET,
     saveUninitialized: false,
     resave: false
   })
@@ -26,11 +28,15 @@ app.use(passport.session())
 // EXPRESS ROUTING ===========================
 app.use(router)
 
+// HANDLE EMMITTED EVENTS =====================
+app.on('warn', e => console.warn(`Error Warning: ${e.stack}`))
+process.setMaxListeners(0)
+
 // CREATES SERVER & MONGODB CONNECTION ========================
 app.on('db_connected', () =>
   app.listen(app.get('port'), () =>
     console.log(
-      `Connected to MongoLab instance & ${process.env.PROJECT} running on`,
+      `Connected to MongoLab instance & ${PROJECT} running on`,
       app.get('port')
     )
   )
