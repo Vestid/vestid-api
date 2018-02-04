@@ -5,6 +5,7 @@ import router from './routes'
 import {} from 'dotenv/config'
 import bodyParser from 'body-parser'
 import session from 'express-session'
+import opbeat from 'opbeat'
 import passport from './routes/api/authentication/passport'
 
 const { PORT, PROJECT, SESSION_SECRET } = process.env
@@ -28,8 +29,8 @@ app.use(passport.session())
 // EXPRESS ROUTING ===========================
 app.use(router)
 
-// HANDLE EMMITTED EVENTS =====================
-// app.on('warn', e => console.warn(`Error Warning: ${e.stack}`))
+// THIRD-PARTY MIDDLEWARE =====================
+app.use(opbeat.middleware.express())
 process.setMaxListeners(0)
 
 // CREATES SERVER & MONGODB CONNECTION ========================
