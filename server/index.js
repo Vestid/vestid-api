@@ -29,7 +29,7 @@ app.use(passport.session())
 app.use(router)
 
 // HANDLE EMMITTED EVENTS =====================
-app.on('warn', e => console.warn(`Error Warning: ${e.stack}`))
+// app.on('warn', e => console.warn(`Error Warning: ${e.stack}`))
 process.setMaxListeners(0)
 
 // CREATES SERVER & MONGODB CONNECTION ========================
