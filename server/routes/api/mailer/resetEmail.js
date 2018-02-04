@@ -20,6 +20,12 @@ exports.resetPasswordEmail = (req, res, next) => {
          you are getting this email because you have requested to reset your password by clicking: ${url}
          in 24 hours this link will no longer allow you to reset your password.`
   }
-  sendgrid.send(msg)
-  res.status(200).send('nice work')
+  sendgrid
+    .send(msg)
+    .then(success => {
+      // console.log('res: ', JSON.stringify(res));
+      console.log('res: ', success.json())
+    })
+    .catch(err => console.log('sendgrid error: ', err))
+  //   res.status(200).send('nice work')
 }
