@@ -48,6 +48,6 @@
     "clean": "rm -rf dist && yarn run build",
     "build": "babel server -d dist --out-dir=dist --source-maps",
     "precommit": "lint-staged",
-    "postinstall": "yarn run clean"
+    "postinstall": "yarn run build"
   }
 }
