@@ -1,6 +1,6 @@
 import db from './db'
-import Raven from 'raven'
 import cors from 'cors'
+import Raven from 'raven'
 import express from 'express'
 import router from './routes'
 import {} from 'dotenv/config'
@@ -35,7 +35,6 @@ app.use(router)
 
 app.use(Raven.errorHandler())
 // HANDLE EMMITTED EVENTS =====================
-// app.on('warn', e => console.warn(`Error Warning: ${e.stack}`))
 process.setMaxListeners(0)
 
 // CREATES SERVER & MONGODB CONNECTION ========================
