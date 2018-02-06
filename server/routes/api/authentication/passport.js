@@ -22,7 +22,7 @@ passport.use(
   )
 )
 
-passport.serializeUser(({ id }, done) => don(null, id))
+passport.serializeUser(({ id }, done) => done(null, id))
 
 passport.deserializeUser((id, done) => {
   app
