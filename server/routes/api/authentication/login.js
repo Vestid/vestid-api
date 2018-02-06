@@ -1,6 +1,6 @@
-exports.loginUser = (req, res, next) => {
-  // console.log(db.users)
-  console.log('session: ', req.session)
-  console.log('USER: ', req.user)
-  res.end('nice job')
-}
+import { removeUserInfo } from '../../../helper'
+
+exports.loginUser = ({ user }, res, next) =>
+  !user
+    ? res.status(404).send('user not found')
+    : res.status(200).send(removeUserInfo(user))
