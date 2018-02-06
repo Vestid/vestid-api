@@ -1,5 +1,3 @@
-import db from 'mongoose'
-
 exports.loginUser = (req, res, next) => {
   // console.log(db.users)
   console.log('session: ', req.session)

@@ -1,5 +1,4 @@
 const { SENDGRID_API, SENDGRID_EMAIL } = process.env
-import db from 'mongoose'
 import sendgrid from '@sendgrid/mail'
 import random from 'rand-token'
 sendgrid.setApiKey(`${SENDGRID_API}`)
