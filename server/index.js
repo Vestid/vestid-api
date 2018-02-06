@@ -6,6 +6,7 @@ import router from './routes'
 import {} from 'dotenv/config'
 import bodyParser from 'body-parser'
 import session from 'express-session'
+import opbeat from 'opbeat'
 import passport from './routes/api/authentication/passport'
 
 const { PORT, PROJECT, SESSION_SECRET, SENTRY_DNS } = process.env
