@@ -1,3 +1,4 @@
+import app from '../../../'
 import passport from 'passport'
 import Strategy from 'passport-local'
 import { verifyPW } from '../../../helper'
@@ -6,34 +7,29 @@ const LocalStrategy = Strategy
 passport.use(
   new LocalStrategy(
     { usernameField: 'email', passwordField: 'password' },
-    (email, password, done) => {
-      console.log('email: ', email)
-      console.log('password: ', password)
-
-      return done(null, email)
-
-      // app.get('db').check_by_email([email]).then(user => {
-      //     user = user[0];
-      //     if(!user) return done(null, false)
-      //     if(verifyPW(password, user.password)) return done(null, user);
-      //     return done(null, false);
-      // })
+    (email, _password, done) => {
+      app
+        .get('db')
+        .users.findOne({ email })
+        .then(user => {
+          const { password } = user
+          return verifyPW(_password, password)
+            ? done(null, user)
+            : done(null, false)
+        })
+        .catch(err => done(err))
     }
   )
 )
 
-passport.serializeUser((user, done) => {
-  console.log('serialize user: ', user)
-  return done(null, user)
-})
+passport.serializeUser(({ id }, done) => don(null, id))
 
 passport.deserializeUser((id, done) => {
-  console.log('deserializeUser: ', id)
-  return done(id)
-
-  // app.get('db').user_search_id([id]).then(response => {
-  //     return done(null, response)
-  // })
+  app
+    .get('db')
+    .users.findOne(id)
+    .then(user => done(null, users))
+    .catch(err => done(err))
 })
 
 export default passport

@@ -1,4 +1,4 @@
-import db from './db'
+import massive from './massive_db'
 import cors from 'cors'
 import Raven from 'raven'
 import express from 'express'
@@ -6,7 +6,7 @@ import router from './routes'
 import {} from 'dotenv/config'
 import bodyParser from 'body-parser'
 import session from 'express-session'
-import opbeat from 'opbeat'
+import errorHandling from './errorHandling'
 import passport from './routes/api/authentication/passport'
 
 const { PORT, PROJECT, SESSION_SECRET, SENTRY_DNS } = process.env
@@ -34,7 +34,10 @@ app.use(passport.session())
 // EXPRESS ROUTING ===========================
 app.use(router)
 
+// SENTRY ERROR HANDLING ======================
 app.use(Raven.errorHandler())
+app.use(errorHandling)
+
 // HANDLE EMMITTED EVENTS =====================
 process.setMaxListeners(0)
 
@@ -42,7 +45,7 @@ process.setMaxListeners(0)
 app.on('db_connected', () =>
   app.listen(app.get('port'), () =>
     console.log(
-      `Connected to MongoLab instance & ${PROJECT} running on`,
+      `Postgres DB connected & ${PROJECT} running on`,
       app.get('port')
     )
   )
