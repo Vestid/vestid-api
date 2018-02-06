@@ -21,5 +21,5 @@ exports.resetPasswordEmail = (req, res, next) => {
   sendgrid
     .send(msg)
     .then(success => res.status(202).send('success'))
-    .catch(err => console.log('sendgrid error: ', err))
+    .catch(err => res.status(500).send(err))
 }

@@ -1,5 +1,6 @@
 import db from './db'
 import cors from 'cors'
+import Raven from 'raven'
 import express from 'express'
 import router from './routes'
 import {} from 'dotenv/config'
@@ -8,10 +9,14 @@ import session from 'express-session'
 import opbeat from 'opbeat'
 import passport from './routes/api/authentication/passport'
 
-const { PORT, PROJECT, SESSION_SECRET } = process.env
+const { PORT, PROJECT, SESSION_SECRET, SENTRY_DNS } = process.env
 const app = express()
 
+Raven.config(SENTRY_DNS).install()
+
 app.set('port', PORT || 3030)
+
+app.use(Raven.requestHandler())
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -29,8 +34,8 @@ app.use(passport.session())
 // EXPRESS ROUTING ===========================
 app.use(router)
 
-// THIRD-PARTY MIDDLEWARE =====================
-app.use(opbeat.middleware.express())
+app.use(Raven.errorHandler())
+// HANDLE EMMITTED EVENTS =====================
 process.setMaxListeners(0)
 
 // CREATES SERVER & MONGODB CONNECTION ========================

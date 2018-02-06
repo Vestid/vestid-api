@@ -23,7 +23,8 @@
     "opbeat": "^4.17.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "rand-token": "^0.4.0"
+    "rand-token": "^0.4.0",
+    "raven": "^2.4.0"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^16.1.0",
