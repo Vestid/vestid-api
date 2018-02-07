@@ -37,18 +37,17 @@ app.use(router)
 // SENTRY ERROR HANDLING ======================
 app.use(Raven.errorHandler())
 app.use(errorHandling)
-
-// HANDLE EMMITTED EVENTS =====================
 process.setMaxListeners(0)
 
 // CREATES SERVER & MONGODB CONNECTION ========================
-app.on('db_connected', () =>
+app.on('db_connected', connection => {
+  app.set('db', connection)
   app.listen(app.get('port'), () =>
     console.log(
       `Postgres DB connected & ${PROJECT} running on`,
       app.get('port')
     )
   )
-)
+})
 
 export default app

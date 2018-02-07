@@ -6,8 +6,10 @@ sendgrid.setApiKey(`${SENDGRID_API}`)
 exports.resetPasswordEmail = (req, res, next) => {
   const { hostname } = req
   const token = random.generate(15)
-  //   const url = `http://${hostname}:3030/api/v1/auth/reset-approved/${token}`
-  const url = `http://${hostname}/api/v1/auth/reset-approved/${token}`
+  // app.get('db')
+  // console.log('inside app: ', app);
+  const url = `http://${hostname}:3030/api/v1/auth/reset-approved/${token}`
+  // const url = `http://${hostname}/api/v1/auth/reset-approved/${token}`
 
   const msg = {
     to: 'vestid.email@gmail.com',

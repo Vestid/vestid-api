@@ -1,7 +1,9 @@
 import app from '../../../'
+// import express from 'express'
 import passport from 'passport'
 import Strategy from 'passport-local'
 import { verifyPW } from '../../../helper'
+// const app = express()
 const LocalStrategy = Strategy
 
 passport.use(
