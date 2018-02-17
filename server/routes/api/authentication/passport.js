@@ -1,15 +1,17 @@
-import app from '../../../'
-// import express from 'express'
+//import app from '../../../'
+import express from 'express'
 import passport from 'passport'
 import Strategy from 'passport-local'
 import { verifyPW } from '../../../helper'
-// const app = express()
+const app = express()
 const LocalStrategy = Strategy
 
 passport.use(
   new LocalStrategy(
     { usernameField: 'email', passwordField: 'password' },
     (email, _password, done) => {
+      console.log('email: ', email)
+      console.log('password: ', _password)
       app
         .get('db')
         .users.findOne({ email })
@@ -30,7 +32,7 @@ passport.deserializeUser((id, done) => {
   app
     .get('db')
     .users.findOne(id)
-    .then(user => done(null, users))
+    .then(user => done(null, user))
     .catch(err => done(err))
 })
 

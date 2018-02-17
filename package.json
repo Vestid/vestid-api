@@ -41,7 +41,7 @@
   "lint-staged": {
     "server/**/*.{js,json}": [
       "prettier --single-quote --no-semi --write",
-      "git add"
+      "git add ."
     ]
   },
   "scripts": {
